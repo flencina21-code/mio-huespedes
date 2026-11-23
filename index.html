@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#3E5D58">
+  <title>MIO Buenos Aires</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&family=Libre+Caslon+Text:ital@0;1&family=Unbounded:wght@600&display=swap">
+  <style>
+    :root {
+      --teal: #3E5D58;
+      --cream: #FFFFFA;
+      --sand: #E9E4D8;
+      --line: 1px solid rgba(62,93,88,.2);
+      --ui: Jost, system-ui, sans-serif;
+      --serif: "Libre Caslon Text", Georgia, serif;
+      color: var(--teal);
+      background: var(--cream);
+      font: 400 1rem/1.45 var(--ui);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; }
+    h1, h2, h3, p, dl, dd { margin: 0; }
+    h1, h2, h3 { font-weight: 300; line-height: 1.06; text-wrap: balance; }
+    h1 { font-size: clamp(3.4rem, 10vw, 6.3rem); letter-spacing: -.05em; }
+    h2 { font-size: clamp(2.25rem, 7vw, 3.65rem); letter-spacing: -.04em; }
+    h3 { font-size: 1.5rem; }
+    p { font: 400 .9375rem/1.65 var(--serif); }
+    a { color: inherit; text-underline-offset: .2em; }
+    button { color: inherit; font: inherit; cursor: pointer; border-radius: 0; }
+    :focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+    .wrap { width: min(100% - 2.5rem, 52rem); margin-inline: auto; }
+    .topbar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .75rem; padding-block: 1rem; border-bottom: var(--line); }
+    .logo { display: block; width: 117px; height: auto; }
+    .languages { display: flex; gap: .125rem; }
+    .languages button { min-width: 44px; min-height: 44px; border: 1px solid transparent; background: none; }
+    .languages [aria-pressed="true"] { border: var(--line); background: var(--sand); }
+    .hero { padding-block: clamp(3rem, 9vw, 6.5rem); }
+    .label { display: block; font: 600 .6875rem/1.6 Unbounded, var(--ui); letter-spacing: .15em; text-transform: uppercase; margin-bottom: .7rem; }
+    .hero p { margin-top: 1rem; font-style: italic; }
+    section { padding-block: clamp(2rem, 6vw, 4rem); border-top: var(--line); }
+    section h2 + p { margin-top: .7rem; }
+    .wifi { padding: clamp(1.25rem, 4vw, 2.5rem); background: var(--sand); border: 0; }
+    .wifi dl { display: grid; gap: .75rem; margin: 1.2rem 0; }
+    dt { font-size: .9375rem; }
+    .wifi dd { font-size: 1.25rem; overflow-wrap: anywhere; }
+    .wifi p { margin-top: 1rem; }
+    #copy-status { min-height: 1.5em; margin: .35rem 0 0; font: inherit; }
+    .wifi + section { border: 0; }
+    .restaurants { display: grid; gap: 1rem; }
+    .restaurants p { margin-top: .2rem; }
+    .restaurants a { margin-right: 1.25rem; }
+    .actions, .places { list-style: none; margin: 1.2rem 0 0; padding: 0; border-top: var(--line); }
+    .actions li, .places li { border-bottom: var(--line); }
+    .actions a, .places a { display: flex; justify-content: space-between; align-items: center; gap: .75rem; padding-block: .75rem; min-height: 52px; text-decoration: none; }
+    .actions a:hover strong, .places a:hover strong { text-decoration: underline; text-underline-offset: .2em; }
+    strong { font-weight: 400; font-size: 1.125rem; }
+    .action-channel, .minutes { font-size: .875rem; white-space: nowrap; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: .55rem 1rem; background: transparent; border: 1px solid var(--teal); text-align: center; text-decoration: none; }
+    .button:hover { background: var(--sand); }
+    .button:focus-visible { outline-color: var(--teal); }
+    .solid { background: var(--teal); color: var(--cream); }
+    .solid:hover { color: var(--teal); }
+    .reviews { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; margin-top: 1.25rem; }
+    .reviews a { min-height: 54px; }
+    .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 1rem; margin-top: 1.25rem; }
+    .facts > div { border-top: var(--line); padding-block: .85rem; }
+    .facts .wide { grid-column: 1 / -1; }
+    .facts dd { font-size: 1.125rem; }
+    .facts p { margin-top: .4rem; }
+    .facts a, .contact a, footer a { display: inline-flex; align-items: center; min-height: 44px; overflow-wrap: anywhere; }
+    .contact { display: flex; flex-wrap: wrap; gap: 0 1.25rem; }
+    .places a { align-items: flex-start; }
+    .places strong { display: block; }
+    .places p { margin-top: .25rem; font-size: .875rem; }
+    .minutes { padding-top: .2rem; }
+    footer { background: var(--teal); color: var(--cream); padding-block: 2rem; }
+    footer .logo { margin-bottom: 1rem; }
+    footer small { display: block; margin-top: .75rem; font-size: .875rem; }
+    @media (min-width: 40rem) {
+      .wrap { width: min(100% - 5rem, 52rem); }
+      .wifi dl { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <div class="topbar">
+      <img class="logo" src="logo.svg" width="94" height="24" alt="MIO Buenos Aires">
+      <div class="languages" role="group" aria-label="Idioma">
+        <button type="button" value="es" lang="es" aria-label="Español" aria-pressed="true">ES</button>
+        <button type="button" value="en" lang="en" aria-label="English" aria-pressed="false">EN</button>
+        <button type="button" value="pt" lang="pt" aria-label="Português" aria-pressed="false">PT</button>
+      </div>
+    </div>
+    <div class="hero">
+      <span class="label" data-text="location"></span>
+      <h1 data-text="welcome"></h1>
+      <p data-text="intro"></p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="wifi" aria-labelledby="wifi-title">
+      <h2 id="wifi-title" data-text="wifi"></h2>
+      <dl>
+        <div><dt data-text="network"></dt><dd id="ssid"></dd></div>
+        <div><dt data-text="password"></dt><dd id="password"></dd></div>
+      </dl>
+      <button class="button solid" type="button" id="copy" data-text="copy"></button>
+      <p id="copy-status" role="status"></p>
+      <p data-text="wifiNote"></p>
+    </section>
+
+    <section aria-labelledby="reception-title">
+      <h2 id="reception-title" data-text="reception"></h2>
+      <p data-text="receptionIntro"></p>
+      <ul class="actions" id="requests"></ul>
+    </section>
+
+    <section aria-labelledby="reviews-title">
+      <h2 id="reviews-title" data-text="reviews"></h2>
+      <div class="reviews">
+        <a class="button solid" id="google-review" target="_blank" rel="noopener" data-text="google"></a>
+        <a class="button" id="tripadvisor-review" target="_blank" rel="noopener" data-text="tripadvisor"></a>
+      </div>
+    </section>
+
+    <section aria-labelledby="hotel-title">
+      <h2 id="hotel-title" data-text="hotel"></h2>
+      <dl class="facts">
+        <div><dt data-text="checkIn"></dt><dd id="check-in"></dd></div>
+        <div><dt data-text="checkOut"></dt><dd id="check-out"></dd></div>
+        <div><dt data-text="breakfast"></dt><dd id="breakfast"></dd></div>
+        <div class="wide"><dt data-text="roomServiceLabel"></dt><dd><span id="room-service"></span><p data-text="roomServiceNote"></p></dd></div>
+        <div class="wide">
+          <dt data-text="spaLabel"></dt>
+          <dd><span id="spa-name"></span> · <span id="spa-details"></span><p data-text="spaNote"></p></dd>
+        </div>
+        <div class="wide"><dt data-text="restaurants"></dt><dd id="restaurants" class="restaurants"></dd></div>
+        <div class="wide"><dt data-text="address"></dt><dd><a id="address" target="_blank" rel="noopener"></a></dd></div>
+      </dl>
+      <div class="contact">
+        <a id="instagram" target="_blank" rel="noopener" data-text="instagram"></a>
+        <a id="website" target="_blank" rel="noopener" data-text="website"></a>
+        <a id="email" data-text="email"></a>
+      </div>
+    </section>
+
+    <section aria-labelledby="nearby-title">
+      <h2 id="nearby-title" data-text="nearby"></h2>
+      <p data-text="onFoot"></p>
+      <ul class="places" id="places"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <img class="logo" src="logo_light.svg" width="94" height="24" alt="MIO Buenos Aires">
+      <p id="emergency"></p>
+      <a id="emergency-contact" data-text="messageReception"></a>
+      <small data-text="credits"></small>
+    </div>
+  </footer>
+
+  <script>
+    const CONFIG = {
+      // Editá acá los datos del hotel, los enlaces y los tiempos estimados a pie.
+      wifi: { ssid: 'MioWifi · MioWifi2.4', password: 'enjoymio' }, // misma clave para las dos redes
+      whatsapp: '5491152958500',
+      googleReviewUrl: 'https://search.google.com/local/writereview?placeid=ChIJjS69QqPKvJURh9hOO4p601k',
+      tripadvisorReviewUrl: 'https://www.tripadvisor.com.ar/UserReviewEdit-g312741-d2069663-Mio_Buenos_Aires-Buenos_Aires_Capital_Federal_District.html',
+      checkIn: '15:00',
+      checkOut: '12:00',
+      breakfast: '7:00–11:00',
+      roomService: '7:30–10:30', // desayuno en la habitación, se pide la noche anterior
+      phone: '+54 11 5295 8500',
+      email: 'recepcion@miobuenosaires.com',
+      emergencyExtension: '0', // interno de recepción desde el teléfono de la habitación
+      spa: { name: 'Refugio', floor: 8, hours: '8:00–20:00' },
+      // Horarios, carta y reservas: sacados de miobuenosaires.com/es/dine-wine (23/11/2026).
+      restaurants: [
+        { name: 'Verdot', hours: [['lunch', '12:00–15:30'], ['wineBar', '17:00–23:00']],
+          menu: 'https://go.waitry.net/order/2587/verdot-wine-bar/F89E4', book: 'https://linktr.ee/verdotwinebar' },
+        { name: 'Rufino', hours: [['dinner', '19:00–23:30']],
+          menu: 'https://rufino.s3.amazonaws.com/carta_rufino.pdf', book: 'https://rufinoargentino.meitre.com/' }
+      ],
+      address: 'Av. Pte. Manuel Quintana 465, CABA',
+      city: 'Buenos Aires',
+      instagram: 'https://www.instagram.com/miobuenosaireshotel/',
+      website: 'https://miobuenosaires.com',
+      places: [
+        ['Cementerio de la Recoleta', 5],
+        ['Basílica del Pilar y Centro Cultural Recoleta', 5],
+        ['Feria de Plaza Francia', 6],
+        ['Museo Nacional de Bellas Artes', 10],
+        ['Floralis Genérica', 14],
+        ['El Ateneo Grand Splendid, Av. Santa Fe 1860', 13],
+        ['La Biela, Av. Quintana 596', 4],
+        ['Biblioteca Nacional Mariano Moreno', 16]
+      ],
+      // Textos de la página y de los mensajes de WhatsApp.
+      i18n: {
+        es: {
+          lang: 'es-AR', language: 'Idioma', title: 'Guía de huéspedes | MIO Buenos Aires',
+          location: 'Recoleta · Buenos Aires', welcome: 'Bienvenido a MIO',
+          intro: 'Todo lo que necesitás para disfrutar tu estadía en Recoleta.',
+          wifi: 'Wi-Fi', network: 'Red', password: 'Clave', copy: 'Copiar clave',
+          copied: 'Clave copiada.', copyFailed: 'Mantené presionada la clave para copiarla.',
+          wifiNote: 'Escaneá el QR de Wi-Fi de tu habitación con la cámara del celular y tocá el aviso para conectarte.',
+          reception: 'Recepción', receptionIntro: 'Escribinos por WhatsApp. Completá tu número de habitación antes de enviar el mensaje.',
+          whatsapp: 'WhatsApp', call: 'Llamar a recepción (desde la habitación, marcá 0)', guest: 'Hola, soy huésped de la habitación ___.',
+          requests: [
+            ['Pedir desayuno en la habitación', 'Quisiera pedir el desayuno en la habitación para mañana a las ___ (de 7:30 a 10:30).'],
+            ['Toallas o amenities extra', '¿Me pueden traer toallas o amenities extra?'],
+            ['Late check-out', '¿Hay disponibilidad para hacer un late check-out?'],
+            ['Pedir un taxi o remis', '¿Me pueden pedir un taxi o remis?'],
+            ['Reservar un masaje', 'Quisiera reservar un masaje.'],
+            ['Reservar mesa en Verdot o Rufino', 'Quisiera reservar una mesa en Verdot o Rufino.'],
+            ['Hablar con recepción', '¿Me pueden ayudar?']
+          ],
+          reviews: '¿Cómo estuvo tu estadía?', google: 'Google', tripadvisor: 'TripAdvisor',
+          hotel: 'Información del hotel', checkIn: 'Check-in', checkOut: 'Check-out', breakfast: 'Desayuno',
+          spaLabel: 'Spa', floor: 'Piso {floor}', spaNote: 'Abierto, sin reserva. Solo los masajes se reservan en recepción.',
+          roomServiceLabel: 'Desayuno en la habitación', roomServiceNote: 'Pedilo la noche anterior en recepción o por WhatsApp.', lunch: 'Almuerzo', wineBar: 'Cena / Wine bar', dinner: 'Cena', menu: 'Ver carta', book: 'Reservar mesa',
+          restaurants: 'Restaurantes', address: 'Dirección', instagram: 'Instagram', website: 'Sitio web', email: 'Correo electrónico',
+          nearby: 'Cerca de MIO', onFoot: 'Paseos a pie desde el hotel.', minutes: '{minutes} min aprox.',
+          places: [
+            ['Cementerio de la Recoleta', 'Mausoleos históricos entre calles arboladas.'],
+            ['Basílica del Pilar y Centro Cultural Recoleta', 'Una iglesia colonial junto a salas de arte y exposiciones.'],
+            ['Feria de Plaza Francia', 'Feria de artesanías los sábados y domingos.'],
+            ['Museo Nacional de Bellas Artes', 'Pintura y escultura argentina e internacional.'],
+            ['Floralis Genérica', 'Una flor de acero en la Plaza de las Naciones Unidas.'],
+            ['El Ateneo Grand Splendid', 'Una librería en un antiguo teatro, Av. Santa Fe 1860.'],
+            ['La Biela', 'Café clásico de Recoleta, Av. Quintana 596.'],
+            ['Biblioteca Nacional', 'Arquitectura brutalista y patrimonio bibliográfico argentino.']
+          ],
+          emergency: 'Ante una emergencia, marcá {extension} desde el teléfono de la habitación o escribí a recepción.',
+          messageReception: 'Escribir a recepción', credits: 'MIO Buenos Aires · Guía de huéspedes'
+        },
+        en: {
+          lang: 'en', language: 'Language', title: 'Guest guide | MIO Buenos Aires',
+          location: 'Recoleta · Buenos Aires', welcome: 'Welcome to MIO',
+          intro: 'Everything you need to enjoy your stay in Recoleta.',
+          wifi: 'Wi-Fi', network: 'Network', password: 'Password', copy: 'Copy password',
+          copied: 'Password copied.', copyFailed: 'Touch and hold the password to copy it.',
+          wifiNote: 'Scan the Wi-Fi QR code in your room with your phone’s camera and tap the prompt to join.',
+          reception: 'Reception', receptionIntro: 'Message us on WhatsApp. Fill in your room number before sending.',
+          whatsapp: 'WhatsApp', call: 'Call reception (from your room, dial 0)', guest: 'Hello, I’m a guest in room ___.',
+          requests: [
+            ['Order breakfast to your room', 'I’d like breakfast in my room tomorrow at ___ (7:30–10:30).'],
+            ['Extra towels or amenities', 'Could you bring me extra towels or amenities?'],
+            ['Late check-out', 'Is late check-out available?'],
+            ['Request a taxi or car service', 'Could you book a taxi or car service for me?'],
+            ['Book a massage', 'I’d like to book a massage.'],
+            ['Book a table at Verdot or Rufino', 'I’d like to book a table at Verdot or Rufino.'],
+            ['Talk to reception', 'Could you help me?']
+          ],
+          reviews: 'How was your stay?', google: 'Google', tripadvisor: 'TripAdvisor',
+          hotel: 'Hotel information', checkIn: 'Check-in', checkOut: 'Check-out', breakfast: 'Breakfast',
+          spaLabel: 'Spa', floor: 'Floor {floor}', spaNote: 'Open, no booking needed. Only massages are booked at reception.',
+          roomServiceLabel: 'Breakfast in your room', roomServiceNote: 'Order it the night before at reception or on WhatsApp.', lunch: 'Lunch', wineBar: 'Dinner / Wine bar', dinner: 'Dinner', menu: 'See menu', book: 'Book a table',
+          restaurants: 'Restaurants', address: 'Address', instagram: 'Instagram', website: 'Website', email: 'Email',
+          nearby: 'Near MIO', onFoot: 'Places to explore on foot from the hotel.', minutes: 'Approx. {minutes} min',
+          places: [
+            ['Recoleta Cemetery', 'Historic mausoleums along tree-lined paths.'],
+            ['Pilar Basilica and Recoleta Cultural Center', 'A colonial church beside art galleries and exhibition spaces.'],
+            ['Plaza Francia Craft Fair', 'A craft market on Saturdays and Sundays.'],
+            ['National Museum of Fine Arts', 'Argentine and international paintings and sculptures.'],
+            ['Floralis Genérica', 'A steel flower in Plaza de las Naciones Unidas.'],
+            ['El Ateneo Grand Splendid', 'A bookstore in a former theater, Av. Santa Fe 1860.'],
+            ['La Biela', 'A classic Recoleta café, Av. Quintana 596.'],
+            ['National Library', 'Brutalist architecture and Argentina’s literary heritage.']
+          ],
+          emergency: 'In an emergency, dial {extension} from your room phone or message reception.',
+          messageReception: 'Message reception', credits: 'MIO Buenos Aires · Guest guide'
+        },
+        pt: {
+          lang: 'pt-BR', language: 'Idioma', title: 'Guia do hóspede | MIO Buenos Aires',
+          location: 'Recoleta · Buenos Aires', welcome: 'Boas-vindas ao MIO',
+          intro: 'Tudo o que você precisa para aproveitar sua estadia na Recoleta.',
+          wifi: 'Wi-Fi', network: 'Rede', password: 'Senha', copy: 'Copiar senha',
+          copied: 'Senha copiada.', copyFailed: 'Toque e segure a senha para copiá-la.',
+          wifiNote: 'Escaneie o QR code do Wi-Fi do quarto com a câmera do celular e toque no aviso para se conectar.',
+          reception: 'Recepção', receptionIntro: 'Fale com a gente pelo WhatsApp. Preencha o número do quarto antes de enviar a mensagem.',
+          whatsapp: 'WhatsApp', call: 'Ligar para a recepção (do quarto, disque 0)', guest: 'Olá, sou hóspede do quarto ___.',
+          requests: [
+            ['Pedir café da manhã no quarto', 'Gostaria do café da manhã no quarto amanhã às ___ (das 7:30 às 10:30).'],
+            ['Toalhas ou itens de higiene extras', 'Vocês podem trazer toalhas ou itens de higiene extras?'],
+            ['Check-out tardio', 'É possível fazer o check-out mais tarde?'],
+            ['Pedir um táxi ou carro particular', 'Vocês podem chamar um táxi ou carro particular para mim?'],
+            ['Reservar uma massagem', 'Gostaria de reservar uma massagem.'],
+            ['Reservar mesa no Verdot ou no Rufino', 'Gostaria de reservar uma mesa no Verdot ou no Rufino.'],
+            ['Falar com a recepção', 'Vocês podem me ajudar?']
+          ],
+          reviews: 'Como foi sua estadia?', google: 'Google', tripadvisor: 'TripAdvisor',
+          hotel: 'Informações do hotel', checkIn: 'Check-in', checkOut: 'Check-out', breakfast: 'Café da manhã',
+          spaLabel: 'Spa', floor: '{floor}º andar', spaNote: 'Aberto, sem reserva. Só as massagens são reservadas na recepção.',
+          roomServiceLabel: 'Café da manhã no quarto', roomServiceNote: 'Peça na noite anterior na recepção ou pelo WhatsApp.', lunch: 'Almoço', wineBar: 'Jantar / Wine bar', dinner: 'Jantar', menu: 'Ver cardápio', book: 'Reservar mesa',
+          restaurants: 'Restaurantes', address: 'Endereço', instagram: 'Instagram', website: 'Site', email: 'E-mail',
+          nearby: 'Perto do MIO', onFoot: 'Passeios a pé a partir do hotel.', minutes: '{minutes} min aprox.',
+          places: [
+            ['Cemitério da Recoleta', 'Mausoléus históricos entre alamedas arborizadas.'],
+            ['Basílica do Pilar e Centro Cultural Recoleta', 'Uma igreja colonial ao lado de galerias e espaços de exposições.'],
+            ['Feira da Plaza Francia', 'Feira de artesanato aos sábados e domingos.'],
+            ['Museu Nacional de Belas Artes', 'Pinturas e esculturas argentinas e internacionais.'],
+            ['Floralis Genérica', 'Uma flor de aço na Plaza de las Naciones Unidas.'],
+            ['El Ateneo Grand Splendid', 'Uma livraria em um antigo teatro, Av. Santa Fe 1860.'],
+            ['La Biela', 'Café clássico da Recoleta, Av. Quintana 596.'],
+            ['Biblioteca Nacional', 'Arquitetura brutalista e patrimônio bibliográfico argentino.']
+          ],
+          emergency: 'Em caso de emergência, disque {extension} do telefone do quarto ou envie uma mensagem à recepção.',
+          messageReception: 'Enviar mensagem à recepção', credits: 'MIO Buenos Aires · Guia do hóspede'
+        }
+      }
+    };
+
+    const byId = (id) => document.getElementById(id);
+    const languageGroup = document.querySelector('.languages');
+    const languageButtons = [...languageGroup.querySelectorAll('button')];
+    const storageKey = 'mio-guest-language';
+    const maps = (query) => 'https://www.google.com/maps/search/?api=1&query='
+      + encodeURIComponent(query + ', ' + CONFIG.city);
+    const phone = 'tel:' + CONFIG.phone.replace(/[^+\d]/g, '');
+    let currentLanguage;
+
+    function initialLanguage() {
+      let stored;
+      try { stored = localStorage.getItem(storageKey); } catch {}
+      const browser = (navigator.language || '').toLowerCase().split('-')[0];
+      return [stored, browser, 'es'].find((code) => Object.prototype.hasOwnProperty.call(CONFIG.i18n, code));
+    }
+
+    function whatsapp(t, message) {
+      return 'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(t.guest + ' ' + message);
+    }
+
+    function listLink(url, title) {
+      const item = document.createElement('li');
+      const link = document.createElement('a');
+      const heading = document.createElement('strong');
+      link.href = url;
+      heading.textContent = title;
+      link.append(heading);
+      item.append(link);
+      return { item, link };
+    }
+
+    function renderRequests(t) {
+      const requests = t.requests.map(([title, message]) => {
+        const { item, link } = listLink(whatsapp(t, message), title);
+        const channel = document.createElement('span');
+        channel.className = 'action-channel';
+        channel.textContent = t.whatsapp;
+        link.append(channel);
+        return item;
+      });
+      byId('requests').replaceChildren(...requests, listLink(phone, t.call).item);
+      byId('emergency-contact').href = whatsapp(t, t.requests[t.requests.length - 1][1]);
+    }
+
+    function renderPlaces(t) {
+      const places = CONFIG.places.map(([query, minutes], index) => {
+        const [title, description] = t.places[index];
+        const { item, link } = listLink(maps(query), title);
+        const info = document.createElement('div');
+        const detail = document.createElement('p');
+        const time = document.createElement('span');
+        detail.textContent = description;
+        time.className = 'minutes';
+        time.textContent = t.minutes.replace('{minutes}', minutes);
+        info.append(link.firstElementChild, detail);
+        link.append(info, time);
+        return item;
+      });
+      byId('places').replaceChildren(...places);
+    }
+
+    function renderRestaurants(t) {
+      byId('restaurants').replaceChildren(...CONFIG.restaurants.map((r) => {
+        const box = document.createElement('div');
+        const name = document.createElement('strong');
+        const hours = document.createElement('p');
+        const links = document.createElement('p');
+        name.textContent = r.name;
+        hours.textContent = r.hours.map(([label, time]) => t[label] + ' ' + time).join(' · ');
+        [[r.menu, t.menu], [r.book, t.book]].forEach(([href, text]) => {
+          const a = document.createElement('a');
+          a.href = href; a.target = '_blank'; a.rel = 'noopener'; a.textContent = text;
+          links.append(a);
+        });
+        box.append(name, hours, links);
+        return box;
+      }));
+    }
+
+    function render(language) {
+      currentLanguage = language;
+      const t = CONFIG.i18n[language];
+      document.documentElement.lang = t.lang;
+      document.title = t.title;
+      languageGroup.setAttribute('aria-label', t.language);
+      languageButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.value === language)));
+      document.querySelectorAll('[data-text]').forEach((element) => {
+        element.textContent = t[element.dataset.text];
+      });
+      byId('copy-status').textContent = '';
+      byId('spa-details').textContent = t.floor.replace('{floor}', CONFIG.spa.floor) + ' · ' + CONFIG.spa.hours;
+      byId('emergency').textContent = t.emergency.replace('{extension}', CONFIG.emergencyExtension);
+      renderRequests(t);
+      renderPlaces(t);
+      renderRestaurants(t);
+    }
+
+    function copyWithSelection(text) {
+      const field = document.createElement('textarea');
+      field.value = text;
+      field.readOnly = true;
+      field.style.cssText = 'position:fixed;top:0;left:0;opacity:0;font-size:16px';
+      document.body.append(field);
+      field.focus();
+      field.select();
+      field.setSelectionRange(0, field.value.length);
+      try {
+        return document.execCommand('copy');
+      } finally {
+        field.remove();
+        byId('copy').focus();
+      }
+    }
+
+    byId('copy').addEventListener('click', async () => {
+      let copied = false;
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(CONFIG.wifi.password);
+          copied = true;
+        }
+      } catch {}
+      if (!copied) {
+        try { copied = copyWithSelection(CONFIG.wifi.password); } catch {}
+      }
+      const t = CONFIG.i18n[currentLanguage];
+      byId('copy-status').textContent = copied ? t.copied : t.copyFailed;
+    });
+
+    [
+      ['ssid', CONFIG.wifi.ssid], ['password', CONFIG.wifi.password],
+      ['check-in', CONFIG.checkIn], ['check-out', CONFIG.checkOut], ['breakfast', CONFIG.breakfast], ['room-service', CONFIG.roomService],
+      ['spa-name', CONFIG.spa.name], ['address', CONFIG.address]
+    ].forEach(([id, value]) => { byId(id).textContent = value; });
+
+    [
+      ['google-review', CONFIG.googleReviewUrl], ['tripadvisor-review', CONFIG.tripadvisorReviewUrl],
+      ['address', maps(CONFIG.address)], ['instagram', CONFIG.instagram], ['website', CONFIG.website],
+      ['email', 'mailto:' + CONFIG.email]
+    ].forEach(([id, value]) => { byId(id).href = value; });
+
+    languageButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        try { localStorage.setItem(storageKey, button.value); } catch {}
+        render(button.value);
+      });
+    });
+    render(initialLanguage());
+  </script>
+</body>
+</html>
